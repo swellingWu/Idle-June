@@ -1,0 +1,49 @@
+//向下面这样定义的函数可以通过在函数名后加一对括号进行调用，像这样`foo()`，
+//因为foo相对于函数表达式`function(){/* code */}`只是一个引用变量
+
+// var foo = function(){console.log("this foo() is run");}
+
+// foo() //=> 使用 foo() 的方式执行函数
+
+//那这可以说明函数表达式可以通过在其后加上一对括号自己调用自己吗？
+
+//' function(){ /* code */}(); //SyntaxError: Unexpected token (
+    //' 当我们使用 var foo = function(){}; 时,会将其作为函数声明而不是函数表达式
+    //! 函数声明
+    // function fn(text){
+    //     console.log(text);
+    // }
+    //- fn('直接调用');
+
+    //! 函数表达式
+    // const fn=function(text){
+    //     console.log(text);
+    // };
+    
+    //- fn('直接调用');
+//=> 因此我们可以使用函数表达式的方法调用函数本身
+// var newfoo = function(){console.log("this is new foo is running");}()
+//=> ==----------------------------------------------------------------
+
+
+//!这两种模式都可以被用来立即调用一个函数表达式，利用函数的执行来创造私有变量
+// (function(){console.log("() 在函数声明中时");}(console.log("is true 1")));
+// (function(){console.log("() 在函数声明外时");})(console.log("is true 2"));
+//=> 当() 中有 function 表达式时就会将其视为函数表达式,因此这个=两个函数的结果是一致的
+
+//' 而当我们使用函数返回值时
+var i = function(){return 10;}();
+// console.log("i is " + i);
+// true && function(){console.log("返回值 --> true");}();
+// 0,function(){console.log("返回值 --> 0");}();
+
+
+
+//! 自执行函数
+(function(global, factory){
+
+})(
+    // typeof window !== "underfined" ? window: this, function(window, noGlobal){
+        console.log("自执行函数")
+    // }
+);
