@@ -19,7 +19,8 @@ jQuery.fn = jQuery.prototype = {
         return this.length
     }
 }
-jQuery.fn.init.prototype = jQuery.fn //使用 jQuery 的原型对象覆盖 init 的原型对象
+jQuery.fn.init.prototype = jQuery.fn//'无法访问对象内 init 方法，作用域受阻
+//使用 jQuery 的原型对象覆盖 init 的原型对象
 //! 调用原型对象
 // var test = new $();//- 实例化对象
 console.log($().version);//- 属性返回值 "3.2.1"
