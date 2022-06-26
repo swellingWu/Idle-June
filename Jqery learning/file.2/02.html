@@ -1,6 +1,6 @@
 <script>
     var $ = jQuery = function (selector, context) {  // jQuery构造函数 选择器和上下文
-        console.log("传入的 context is: "+context);
+        // 传入上下文对象，类似外部环境变量
         return new jQuery.fn.init(selector, context);  //jQuery实例对象
     }
     jQuery.fn = jQuery.prototype = {  //jQuery原型对象

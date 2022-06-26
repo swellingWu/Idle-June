@@ -1,0 +1,41 @@
+<script>
+    var $ = non = function(selector,context) {
+        return new non.fn.init(selector, context);
+    }
+    non.fn = non.prototype = {
+        init: function(selector, context) {
+            selector = selector || document;
+            context = context || document;
+            if(typeof selector == "string") {
+                var data = context.getElementsByTagName(selector)
+                for(var i=0;i<data.length;i++) {
+                    this[i] = data[i];
+                }
+                this.length = data.length
+                this.context = context
+                return this
+            }   
+        },
+        html: function(val) {
+            non.each(this,function(val) {
+                this.innerHTML = val
+            },val)
+        },
+    }
+    non.fn.init.prototype = non.fn;
+    // 迭代器
+    non.each = function(object,callback,args) {
+        for (var i=0;i<object.length;i++) {
+            callback.call(object[i],args);
+        }
+        return object;
+    }
+</script>
+<script>
+    window.onload = function () {
+        $("div").html("<h1>你好</h1>");
+    }
+</script>
+<div></div>
+<div></div>
+<div></div>
